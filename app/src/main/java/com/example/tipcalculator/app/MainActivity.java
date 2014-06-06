@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -32,5 +35,23 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void calculateTip(View view){
+        EditText billAmount = (EditText) findViewById(R.id.editText);
+        TextView tipAmount = (TextView) findViewById(R.id.tTipAmount);
+        float tipFactor = 0f;
+        switch (view.getId()){
+            case R.id.btn10pc:
+                tipFactor = 0.1f;
+                break;
+            case R.id.btn15pc:
+                tipFactor = 0.15f;
+                break;
+            case R.id.btn20pc:
+                tipFactor = 0.2f;
+                break;
+        }
+        tipAmount.setText(String.valueOf(Integer.parseInt(billAmount.getText().toString()) * tipFactor));
     }
 }
