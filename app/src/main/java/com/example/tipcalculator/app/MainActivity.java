@@ -2,14 +2,26 @@ package com.example.tipcalculator.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private NumberFormat tipAmountFormatter = NumberFormat.getCurrencyInstance();
+    private float currentTipFactor;
+
+    public void setCurrentTipFactor(float currentTipFactor) {
+        this.currentTipFactor = currentTipFactor;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +50,42 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void calculateTip(View view){
+        setCurrentTipFactor(0f);
         EditText billAmount = (EditText) findViewById(R.id.editText);
         TextView tipAmount = (TextView) findViewById(R.id.tTipAmount);
-        float tipFactor = 0f;
         switch (view.getId()){
             case R.id.btn10pc:
-                tipFactor = 0.1f;
+                setCurrentTipFactor(0.1f);
                 break;
             case R.id.btn15pc:
-                tipFactor = 0.15f;
+                setCurrentTipFactor(0.15f);
                 break;
             case R.id.btn20pc:
-                tipFactor = 0.2f;
+                setCurrentTipFactor(0.2f);
                 break;
         }
-        tipAmount.setText(String.valueOf(Integer.parseInt(billAmount.getText().toString()) * tipFactor));
+        String tip = tipAmountFormatter.format(Double.parseDouble(billAmount.getText().toString()) * currentTipFactor);
+        tipAmount.setText(tip);
+
+        //Attach EventHandler
+        billAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextView tipAmount = (TextView) findViewById(R.id.tTipAmount);
+                if(s.length() > 0) {
+                    String tip = tipAmountFormatter.format(Double.parseDouble(s.toString()) * currentTipFactor);
+                    tipAmount.setText(tip);
+                }
+            }
+        });
     }
 }
