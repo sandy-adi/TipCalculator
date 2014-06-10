@@ -12,7 +12,6 @@ Completed user stories:
  * [x] Required: User can select between tip amounts (i.e 10%, 15%, 20%)
  * [x] Required: Upon selecting tip amount, formatted tip value is displayed
  * [x] Optional: User changes the total amount and updated tip is reflected automatically
- * [x] Optional: 
  
 Notes:
 Walkthrough of all user stories:
