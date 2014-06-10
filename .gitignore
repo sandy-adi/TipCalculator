@@ -16,9 +16,6 @@
 bin/
 gen/
 
-# assets non-app
-assets/
-
 # Local configuration file (sdk path, etc)
 local.properties
 
