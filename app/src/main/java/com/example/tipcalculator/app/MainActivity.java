@@ -52,6 +52,8 @@ public class MainActivity extends ActionBarActivity {
     public void calculateTip(View view){
         setCurrentTipFactor(0f);
         EditText billAmount = (EditText) findViewById(R.id.editText);
+        String totalAmount = billAmount.getText().toString();
+        totalAmount = totalAmount != null && totalAmount.length() > 0 ? totalAmount : "0";
         TextView tipAmount = (TextView) findViewById(R.id.tTipAmount);
         switch (view.getId()){
             case R.id.btn10pc:
@@ -64,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
                 setCurrentTipFactor(0.2f);
                 break;
         }
-        String tip = tipAmountFormatter.format(Double.parseDouble(billAmount.getText().toString()) * currentTipFactor);
+        String tip = tipAmountFormatter.format(Double.parseDouble(totalAmount) * currentTipFactor);
         tipAmount.setText(tip);
 
         //Attach EventHandler
@@ -84,6 +86,8 @@ public class MainActivity extends ActionBarActivity {
                 if(s.length() > 0) {
                     String tip = tipAmountFormatter.format(Double.parseDouble(s.toString()) * currentTipFactor);
                     tipAmount.setText(tip);
+                }else{
+                    tipAmount.setText(tipAmountFormatter.format(0));
                 }
             }
         });
