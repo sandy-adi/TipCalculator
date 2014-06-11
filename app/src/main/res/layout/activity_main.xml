@@ -14,18 +14,21 @@
             android:id="@+id/editText" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:numeric="decimal"/>
+            android:numeric="decimal"
+            android:imeOptions="actionDone"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pc_10"
             android:id="@+id/btn10pc"
+            android:tag=".10"
             android:onClick="calculateTip" android:layout_alignTop="@+id/btn15pc"
             android:layout_toLeftOf="@+id/btn15pc"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pc_15"
+            android:tag=".15"
             android:id="@+id/btn15pc"
             android:layout_centerVertical="true" android:layout_centerHorizontal="true"
             android:onClick="calculateTip"/>
@@ -33,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pc_20"
+            android:tag=".20"
             android:id="@+id/btn20pc"
             android:onClick="calculateTip" android:layout_alignTop="@+id/btn15pc"
             android:layout_toRightOf="@+id/btn15pc"/>

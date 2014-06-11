@@ -55,17 +55,7 @@ public class MainActivity extends ActionBarActivity {
         String totalAmount = billAmount.getText().toString();
         totalAmount = totalAmount != null && totalAmount.length() > 0 ? totalAmount : "0";
         TextView tipAmount = (TextView) findViewById(R.id.tTipAmount);
-        switch (view.getId()){
-            case R.id.btn10pc:
-                setCurrentTipFactor(0.1f);
-                break;
-            case R.id.btn15pc:
-                setCurrentTipFactor(0.15f);
-                break;
-            case R.id.btn20pc:
-                setCurrentTipFactor(0.2f);
-                break;
-        }
+        setCurrentTipFactor(Float.parseFloat(view.getTag().toString()));
         String tip = tipAmountFormatter.format(Double.parseDouble(totalAmount) * currentTipFactor);
         tipAmount.setText(tip);
 
